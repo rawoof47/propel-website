@@ -42,9 +42,9 @@ function computeLeadPriority(count: number): "low" | "medium" | "high" {
 const CONTACT_METHODS = ["WhatsApp", "Phone Call", "Email"] as const;
 type ContactMethod = (typeof CONTACT_METHODS)[number];
 
-const WHATSAPP_NUMBER = "+14155550142";
-const EMAIL = "hello@propel.studio";
-const PHONE_DISPLAY = "+1 (415) 555-0142";
+const WHATSAPP_NUMBER = "+91 63038 85050";
+const EMAIL = "contact@localstrategies.net";
+const PHONE_DISPLAY = "+91 63038 85050";
 
 type Errors = Partial<Record<"firstName" | "email" | "phone" | "services", string>>;
 type TouchedFields = "firstName" | "email" | "phone" | "services" | "__submit";
@@ -419,7 +419,7 @@ await emailjs.send(serviceId, templateId, templateParams, publicKey);
                     icon="whatsapp"
                   />
                   <QuickAction
-                    href={`tel:${WHATSAPP_NUMBER}`}
+                    href={`tel:+${WHATSAPP_NUMBER.replace(/[^0-9]/g, "")}`}
                     label="Call now"
                     sub={PHONE_DISPLAY}
                     icon="call"

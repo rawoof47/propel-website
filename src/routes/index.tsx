@@ -469,48 +469,165 @@ Every Propel engagement is measured by what it improves: qualified leads, lower 
       <ContactSection />
 
       {/* Footer */}
-      <footer className="border-t border-border bg-foreground text-background">
-        <div className="mx-auto max-w-[1400px] px-6 py-16 md:px-10">
-          <div className="grid gap-12 md:grid-cols-12">
-            <div className="md:col-span-5">
-              <PropelLogo className="h-8" color="var(--lime)" />
-              <p className="mt-6 max-w-sm text-background/70">
-                Propel — a business growth & development partner. Websites, software, branding,
-                campaigns and the systems that hold it all together.
+<footer className="border-t border-border bg-foreground text-background">
+  <div className="mx-auto max-w-[1400px] px-6 py-16 md:px-10">
+
+    <div className="grid gap-12 md:grid-cols-12">
+
+      {/* Brand Section */}
+      <div className="md:col-span-5">
+        <PropelLogo className="h-8" color="var(--lime)" />
+
+        <p className="mt-6 max-w-sm text-background/70 leading-relaxed">
+          Propel is a digital growth partner helping businesses build, scale, and automate.
+          We design websites, software systems, and marketing engines that drive real business outcomes.
+        </p>
+      </div>
+
+      {/* Links */}
+      <div className="md:col-span-4 grid grid-cols-2 gap-10 text-sm">
+
+        {/* Company */}
+        <div>
+          <p className="text-xs uppercase tracking-widest text-background/50">
+            Company
+          </p>
+          <ul className="mt-4 space-y-2">
+            {["About", "Case Studies", "Contact"].map((item) => (
+              <li key={item}>
+                <a
+                  href="#"
+                  className="text-background/70 hover:text-[var(--lime)] transition-colors"
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Services */}
+        <div>
+          <p className="text-xs uppercase tracking-widest text-background/50">
+            Services
+          </p>
+
+          <div className="mt-4 space-y-6">
+
+            {/* Digital Presence */}
+            <div>
+              <p className="text-[11px] uppercase tracking-wider text-background/40 mb-2">
+                Digital Presence
               </p>
+              <ul className="space-y-1">
+                {[
+                  "Website / Landing Page",
+                  "SEO Optimization",
+                ].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-background/70 hover:text-[var(--lime)] transition-colors">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="md:col-span-4 grid grid-cols-2 gap-8 text-sm">
-              {[
-                { h: "Company", l: ["Team", "Services", "Clients"] },
-                { h: "Resources", l: ["Case Studies", "Media", "Contact Us"] },
-              ].map((c) => (
-                <div key={c.h}>
-                  <p className="text-xs uppercase tracking-widest text-background/50">{c.h}</p>
-                  <ul className="mt-4 space-y-2">
-                    {c.l.map((x) => (
-                      <li key={x}><a href="#" className="hover:text-[var(--lime)]">{x}</a></li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            {/* Software Solutions */}
+            <div>
+              <p className="text-[11px] uppercase tracking-wider text-background/40 mb-2">
+                Software Solutions
+              </p>
+              <ul className="space-y-1">
+                {[
+                  "Web Applications",
+                  "Mobile App Development",
+                  "Business Automation Systems",
+                ].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-background/70 hover:text-[var(--lime)] transition-colors">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="md:col-span-3">
-              <div className="rounded-xl border border-background/20 p-5">
-                <div className="text-xs uppercase tracking-widest text-background/60">Award</div>
-                <div className="text-display mt-2 text-xl text-[var(--lime)]">Clutch Global Winner</div>
-                <div className="text-sm text-background/70">Spring 2024</div>
-              </div>
+            {/* Marketing */}
+            <div>
+              <p className="text-[11px] uppercase tracking-wider text-background/40 mb-2">
+                Marketing
+              </p>
+              <ul className="space-y-1">
+                {[
+                  "Social Media Marketing",
+                  "Paid Ad Campaigns (Meta / Google)",
+                ].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-background/70 hover:text-[var(--lime)] transition-colors">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
 
-          <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-background/15 pt-8 text-sm text-background/60">
-            <p>© 2024 Propel. All rights reserved.</p>
-            <p>Built with intent. Shipped with momentum.</p>
+            {/* Support */}
+            <div>
+              <p className="text-[11px] uppercase tracking-wider text-background/40 mb-2">
+                Support
+              </p>
+              <ul className="space-y-1">
+                {["Maintenance & Support"].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-background/70 hover:text-[var(--lime)] transition-colors">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
           </div>
         </div>
-      </footer>
+      </div>
+
+      {/* Trust Card */}
+      <div className="md:col-span-3">
+        <div className="rounded-xl border border-background/20 p-6 bg-background/5">
+
+          <div className="text-xs uppercase tracking-widest text-background/60">
+            Recognition
+          </div>
+
+          <div className="mt-3 text-xl font-semibold text-[var(--lime)]">
+            Trusted Growth Partner
+          </div>
+
+          <p className="mt-2 text-sm text-background/70 leading-relaxed">
+            Helping startups and businesses transform digital presence into scalable growth systems.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+
+    {/* Bottom Bar */}
+    <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-background/15 pt-8 text-sm text-background/60">
+
+      <p>
+        © {new Date().getFullYear()} Propel. All rights reserved.
+      </p>
+
+      <p className="text-background/50">
+        Built for growth. Designed for impact.
+      </p>
+
+    </div>
+
+  </div>
+</footer>
     </div>
   );
 }
