@@ -72,7 +72,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Propel — Business Growth & Development" },
+      { title: "Propel" },
       { name: "description", content: "Propel is a business growth & development partner — websites, custom software, branding, SEO, ads and growth systems for real businesses." },
       { property: "og:title", content: "Propel — Business Growth & Development" },
       { property: "og:description", content: "Growth systems for real businesses. Web, software, branding, SEO, ads & lead generation." },
