@@ -43,7 +43,7 @@ const CONTACT_METHODS = ["WhatsApp", "Phone Call", "Email"] as const;
 type ContactMethod = (typeof CONTACT_METHODS)[number];
 
 const WHATSAPP_NUMBER = "+91 63038 85050";
-const EMAIL = "contact@localstrategies.net";
+const EMAIL = "contact@propelstrategies.net";
 const PHONE_DISPLAY = "+91 63038 85050";
 
 type Errors = Partial<Record<"firstName" | "email" | "phone" | "services", string>>;

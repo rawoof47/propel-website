@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { Info, Briefcase, Mail, Globe, Search, Code2, Smartphone, Workflow, Megaphone, Target, LifeBuoy, ArrowUpRight } from "lucide-react";
 import { PropelLogo } from "@/components/PropelLogo";
 import { ContactSection } from "@/components/ContactSection";
 
@@ -132,7 +134,69 @@ const cases = [
   },
 ];
 
+/* Footer link maps — every link points to a real section id */
+const companyLinks = [
+  { label: "About", href: "#about", Icon: Info },
+  { label: "Case Studies", href: "#work", Icon: Briefcase },
+  { label: "Contact", href: "#contact", Icon: Mail },
+];
+
+const footerServiceGroups = [
+  {
+    title: "Digital Presence",
+    items: [
+      { label: "Website / Landing Page", href: "#services", Icon: Globe },
+      { label: "SEO Optimization", href: "#services", Icon: Search },
+    ],
+  },
+  {
+    title: "Software Solutions",
+    items: [
+      { label: "Web Applications", href: "#services", Icon: Code2 },
+      { label: "Mobile App Development", href: "#services", Icon: Smartphone },
+      { label: "Business Automation Systems", href: "#services", Icon: Workflow },
+    ],
+  },
+  {
+    title: "Marketing",
+    items: [
+      { label: "Social Media Marketing", href: "#services", Icon: Megaphone },
+      { label: "Paid Ad Campaigns (Meta / Google)", href: "#services", Icon: Target },
+    ],
+  },
+  {
+    title: "Support",
+    items: [{ label: "Maintenance & Support", href: "#contact", Icon: LifeBuoy }],
+  },
+];
+
+function useScrollReveal() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const els = document.querySelectorAll<HTMLElement>(".reveal-on-scroll");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+
 function Index() {
+  useScrollReveal();
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Nav */}
@@ -140,13 +204,13 @@ function Index() {
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-10">
           <PropelLogo className="h-6" />
           <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
-            <a href="#pillars" className="hover:text-orange">Approach</a>
-            <a href="#services" className="hover:text-orange">Services</a>
-            <a href="#work" className="hover:text-orange">Work</a>
-            <a href="#process" className="hover:text-orange">Process</a>
-            <a href="#contact" className="hover:text-orange">Contact</a>
+            <a href="#pillars" className="link-underline hover:text-[var(--orange)]">Approach</a>
+            <a href="#services" className="link-underline hover:text-[var(--orange)]">Services</a>
+            <a href="#work" className="link-underline hover:text-[var(--orange)]">Work</a>
+            <a href="#process" className="link-underline hover:text-[var(--orange)]">Process</a>
+            <a href="#contact" className="link-underline hover:text-[var(--orange)]">Contact</a>
           </nav>
-          <a href="#contact" className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-[var(--orange)]">
+          <a href="#contact" className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-[var(--orange)] hover:shadow-lg">
             Get in touch <span className="transition group-hover:translate-x-0.5">↗</span>
           </a>
         </div>
@@ -211,7 +275,7 @@ function Index() {
 
       {/* Pillars */}
       <section id="pillars" className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
-        <div className="grid gap-10 md:grid-cols-12">
+        <div className="grid gap-10 md:grid-cols-12 reveal-on-scroll">
           <div className="md:col-span-5">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Four pillars</p>
             <h2 className="text-display mt-4 text-5xl md:text-7xl">
@@ -224,11 +288,11 @@ function Index() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-2">
+        <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-2 reveal-on-scroll">
           {pillars.map((p, i) => (
             <div
               key={p.title}
-              className={`group relative flex min-h-[280px] flex-col justify-between bg-card p-8 transition hover:bg-foreground hover:text-background md:p-12 ${
+              className={`group relative flex min-h-[280px] flex-col justify-between bg-card p-8 transition-all duration-300 hover:bg-foreground hover:text-background md:p-12 ${
                 i === 0 || i === 3 ? "md:bg-[var(--beige)]" : ""
               }`}
             >
@@ -248,7 +312,7 @@ function Index() {
       {/* Services */}
       <section id="services" className="bg-foreground text-background">
         <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
-          <div className="grid gap-10 md:grid-cols-12">
+          <div className="grid gap-10 md:grid-cols-12 reveal-on-scroll">
             <h2 className="text-display md:col-span-7 text-5xl md:text-7xl">
               Services that <span className="text-[var(--lime)]"> accelerate business</span>
             </h2>
@@ -259,7 +323,7 @@ function Index() {
 
           <div className="mt-16 grid gap-4 md:grid-cols-3">
             {services.map((s) => (
-              <div key={s.title} className="group relative overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03] p-8 transition hover:bg-background/[0.07]">
+              <div key={s.title} className="group reveal-on-scroll relative overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03] p-8 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:border-[var(--lime)]/40 hover:bg-background/[0.07] hover:shadow-2xl">
                 <div className="flex items-baseline justify-between">
                   <span className="text-display text-5xl md:text-6xl text-[var(--lime)]">{s.metric}</span>
                   <span className="text-xl text-background/60 transition group-hover:translate-x-1">↗</span>
@@ -275,7 +339,7 @@ function Index() {
       {/* Selected Work / Case Studies */}
 <section id="work" className="bg-background">
   <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
-    <div className="grid gap-10 md:grid-cols-12 md:items-end">
+    <div className="grid gap-10 md:grid-cols-12 md:items-end reveal-on-scroll">
       <h2 className="text-display text-6xl leading-none md:col-span-8 md:text-8xl">
   Selected
   <span
@@ -296,7 +360,7 @@ function Index() {
       {cases.map((c, i) => (
         <article
           key={c.client}
-          className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card p-5 md:p-10"
+          className="reveal-on-scroll relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:border-[var(--orange)]/40 hover:shadow-xl md:p-10"
         >
           <header className="relative flex items-start justify-between gap-3">
             <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground md:text-xs">
@@ -333,7 +397,7 @@ function Index() {
       {/* Process */}
       <section id="process" className="border-y border-border bg-[var(--beige)]">
         <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
-          <div className="grid gap-10 md:grid-cols-12">
+          <div className="grid gap-10 md:grid-cols-12 reveal-on-scroll">
             <p className="md:col-span-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Process</p>
             <h2 className="text-display md:col-span-9 text-5xl md:text-7xl">
               Five moves. <br />
@@ -354,8 +418,8 @@ function Index() {
       </section>
 
       {/* Philosophy */}
-      <section className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
-        <div className="grid gap-12 md:grid-cols-12 md:items-center">
+      <section id="about" className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
+        <div className="grid gap-12 md:grid-cols-12 md:items-center reveal-on-scroll">
           <div className="md:col-span-2">
             <div className="relative h-32 w-32">
               <div className="absolute inset-0 rounded-full bg-[var(--lime)]" />
@@ -376,7 +440,7 @@ Every Propel engagement is measured by what it improves: qualified leads, lower 
       {/* Testimonials */}
       <section id="testimonials" className="border-y border-border bg-foreground text-background overflow-hidden">
         <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
-          <div className="grid gap-10 md:grid-cols-12 md:items-end">
+          <div className="grid gap-10 md:grid-cols-12 md:items-end reveal-on-scroll">
             <h2 className="text-display md:col-span-8 text-5xl leading-none md:text-7xl">
               Reviews that'll make you{" "}
               <span className="italic font-medium text-[var(--lime)]">cartwheel.</span>
@@ -386,7 +450,6 @@ Every Propel engagement is measured by what it improves: qualified leads, lower 
             </p>
           </div>
 
-          {/* Testimonial grid — fixed 2 cols on mobile collapses to 1, 2 cols on desktop */}
           <div className="mt-16 grid gap-4 md:gap-6 md:grid-cols-2">
             {testimonials.map((t, i) => (
               <figure
@@ -394,7 +457,6 @@ Every Propel engagement is measured by what it improves: qualified leads, lower 
                 style={{ animationDelay: `${i * 120}ms` }}
                 className="testimonial-card group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03] p-7 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[var(--orange)]/40 hover:bg-background/[0.06] md:p-10"
               >
-                {/* corner accent */}
                 <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[var(--orange)]/0 blur-3xl transition-all duration-700 group-hover:bg-[var(--orange)]/30" />
 
                 <header className="relative flex items-center justify-between">
@@ -439,27 +501,6 @@ Every Propel engagement is measured by what it improves: qualified leads, lower 
               </figure>
             ))}
           </div>
-
-          {/* Stat strip (hidden for now - will enable later when we have real data/partners) */}
-{/*
-  <div className="mt-10 grid grid-cols-2 gap-4 border-t border-background/15 pt-10 md:mt-16 md:grid-cols-4 md:gap-6 md:pt-16">
-    {[
-      { v: "98%", l: "Client retention" },
-      { v: "47", l: "Active partners" },
-      { v: "5★", l: "Avg. rating" },
-      { v: "12+", l: "Industries served" },
-    ].map((s) => (
-      <div key={s.l} className="group">
-        <div className="text-display text-4xl text-[var(--lime)] transition-colors duration-300 group-hover:text-[var(--orange)] md:text-6xl">
-          {s.v}
-        </div>
-        <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-background/60 md:text-xs">
-          {s.l}
-        </p>
-      </div>
-    ))}
-  </div>
-*/}
         </div>
       </section>
 
@@ -479,8 +520,7 @@ Every Propel engagement is measured by what it improves: qualified leads, lower 
         <PropelLogo className="h-8" color="var(--lime)" />
 
         <p className="mt-6 max-w-sm text-background/70 leading-relaxed">
-          Propel is a digital growth partner helping businesses build, scale, and automate.
-          We design websites, software systems, and marketing engines that drive real business outcomes.
+          We help businesses grow faster by creating digital systems that combine design, technology, and marketing into a single scalable growth engine.
         </p>
       </div>
 
@@ -492,14 +532,15 @@ Every Propel engagement is measured by what it improves: qualified leads, lower 
           <p className="text-xs uppercase tracking-widest text-background/50">
             Company
           </p>
-          <ul className="mt-4 space-y-2">
-            {["About", "Case Studies", "Contact"].map((item) => (
-              <li key={item}>
+          <ul className="mt-4 space-y-2.5">
+            {companyLinks.map(({ label, href, Icon }) => (
+              <li key={label}>
                 <a
-                  href="#"
-                  className="text-background/70 hover:text-[var(--lime)] transition-colors"
+                  href={href}
+                  className="link-underline group text-background/70 hover:text-[var(--lime)]"
                 >
-                  {item}
+                  <Icon className="size-3.5 shrink-0 opacity-70 transition group-hover:opacity-100 group-hover:text-[var(--orange)]" />
+                  <span>{label}</span>
                 </a>
               </li>
             ))}
@@ -513,91 +554,41 @@ Every Propel engagement is measured by what it improves: qualified leads, lower 
           </p>
 
           <div className="mt-4 space-y-6">
-
-            {/* Digital Presence */}
-            <div>
-              <p className="text-[11px] uppercase tracking-wider text-background/40 mb-2">
-                Digital Presence
-              </p>
-              <ul className="space-y-1">
-                {[
-                  "Website / Landing Page",
-                  "SEO Optimization",
-                ].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-background/70 hover:text-[var(--lime)] transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Software Solutions */}
-            <div>
-              <p className="text-[11px] uppercase tracking-wider text-background/40 mb-2">
-                Software Solutions
-              </p>
-              <ul className="space-y-1">
-                {[
-                  "Web Applications",
-                  "Mobile App Development",
-                  "Business Automation Systems",
-                ].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-background/70 hover:text-[var(--lime)] transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Marketing */}
-            <div>
-              <p className="text-[11px] uppercase tracking-wider text-background/40 mb-2">
-                Marketing
-              </p>
-              <ul className="space-y-1">
-                {[
-                  "Social Media Marketing",
-                  "Paid Ad Campaigns (Meta / Google)",
-                ].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-background/70 hover:text-[var(--lime)] transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Support */}
-            <div>
-              <p className="text-[11px] uppercase tracking-wider text-background/40 mb-2">
-                Support
-              </p>
-              <ul className="space-y-1">
-                {["Maintenance & Support"].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-background/70 hover:text-[var(--lime)] transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
+            {footerServiceGroups.map((group) => (
+              <div key={group.title}>
+                <p className="text-[11px] uppercase tracking-wider text-background/40 mb-2">
+                  {group.title}
+                </p>
+                <ul className="space-y-1.5">
+                  {group.items.map(({ label, href, Icon }) => (
+                    <li key={label}>
+                      <a
+                        href={href}
+                        className="link-underline group text-background/70 hover:text-[var(--lime)]"
+                      >
+                        <Icon className="size-3.5 shrink-0 opacity-70 transition group-hover:opacity-100 group-hover:text-[var(--orange)]" />
+                        <span>{label}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Trust Card */}
       <div className="md:col-span-3">
-        <div className="rounded-xl border border-background/20 p-6 bg-background/5">
-
-          <div className="text-xs uppercase tracking-widest text-background/60">
-            Recognition
+        <a
+          href="#contact"
+          className="block rounded-xl border border-background/20 p-6 bg-background/5 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--lime)]/40 hover:bg-background/10 hover:shadow-xl"
+        >
+          <div className="flex items-center justify-between">
+            <div className="text-xs uppercase tracking-widest text-background/60">
+              Recognition
+            </div>
+            <ArrowUpRight className="size-4 text-background/50 transition group-hover:text-[var(--lime)]" />
           </div>
 
           <div className="mt-3 text-xl font-semibold text-[var(--lime)]">
@@ -607,8 +598,7 @@ Every Propel engagement is measured by what it improves: qualified leads, lower 
           <p className="mt-2 text-sm text-background/70 leading-relaxed">
             Helping startups and businesses transform digital presence into scalable growth systems.
           </p>
-
-        </div>
+        </a>
       </div>
 
     </div>

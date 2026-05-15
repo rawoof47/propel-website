@@ -10,14 +10,14 @@ export function PropelLogo({
       style={{ color }}
     >
       {/* Logo */}
-      <div className="inline-flex items-center gap-1 font-display font-bold">
+      <div className="inline-flex items-start gap-1 font-display font-bold">
         <span className="text-[1.4em] leading-none tracking-tight">
           Propel
         </span>
 
         <svg
           viewBox="0 0 24 24"
-          className="h-[0.9em] w-[0.9em]"
+          className="h-[0.75em] w-[0.75em] -mt-[0.15em] self-start"
           fill="none"
           stroke={color}
           strokeWidth="3.5"
