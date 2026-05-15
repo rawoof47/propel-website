@@ -1,0 +1,164 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-orange: var(--orange);
+  --color-lime: var(--lime);
+  --color-beige: var(--beige);
+  --color-ink: var(--ink);
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.985 0.002 80);
+  --foreground: oklch(0.16 0.005 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.005 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0.005 250);
+  --primary: oklch(0.16 0.005 250);
+  --primary-foreground: oklch(0.985 0.002 80);
+  --secondary: oklch(0.95 0.008 80);
+  --secondary-foreground: oklch(0.16 0.005 250);
+  --muted: oklch(0.95 0.008 80);
+  --muted-foreground: oklch(0.45 0.01 250);
+  --accent: oklch(0.93 0.02 70);
+  --accent-foreground: oklch(0.16 0.005 250);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.9 0.005 80);
+  --input: oklch(0.9 0.005 80);
+  --ring: oklch(0.16 0.005 250);
+
+  /* Brand palette: black / white / orange / lime */
+  --orange: oklch(0.72 0.19 45);
+  --lime: oklch(0.92 0.22 130);
+  --beige: oklch(0.95 0.02 75);
+  --ink: oklch(0.16 0.005 250);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+  ::selection {
+    background-color: var(--orange);
+    color: var(--background);
+  }
+}
+
+@layer utilities {
+  .text-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+  }
+
+  /* Marquee */
+  .marquee {
+    animation: marquee 30s linear infinite;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Generic fade-up */
+  .fade-up {
+    animation: fadeUp 0.8s ease-out both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Case study card reveal */
+  .case-card {
+    opacity: 0;
+    animation: caseReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes caseReveal {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Testimonial card reveal (slight slide + fade) */
+  .testimonial-card {
+    opacity: 0;
+    animation: testimonialReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes testimonialReveal {
+    from { opacity: 0; transform: translateY(24px) scale(0.985); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Soft pulsing glow for accent dots / icons */
+  .accent-pulse {
+    animation: accentPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes accentPulse {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--orange) 45%, transparent); }
+    50%      { box-shadow: 0 0 0 10px color-mix(in oklab, var(--orange) 0%, transparent); }
+  }
+
+  /* Underline grow on hover */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -2px;
+    height: 1px; width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
