@@ -66,7 +66,7 @@ const testimonials = [
     client: "PERCYBOARDING",
     quote:
       "Propel rebuilt our entire digital backbone. The new website plus the boarding management platform replaced **3 disconnected tools** and saved our team hours every single day.",
-    author: "Riya Kapoor",
+    author: "Muqthar Baig",
     role: "Founder, Percyboarding",
     metric: "2 Systems",
   },
@@ -74,7 +74,7 @@ const testimonials = [
     client: "NOVA RETAIL",
     quote:
       "Within one quarter the redesigned site and local SEO push delivered a **184% lift in qualified inquiries**. The Propel team operates with real strategic intent.",
-    author: "Daniel Osei",
+    author: "Aarav Mehta",
     role: "Marketing Director, Nova Retail",
     metric: "+184%",
   },
@@ -82,7 +82,7 @@ const testimonials = [
     client: "LUMIO SYSTEMS",
     quote:
       "The automation dashboard cut **63% of our manual operations** in the first month. What used to take a full team day now runs in the background — accurately.",
-    author: "Hannah Beck",
+    author: "Priya Sharma",
     role: "COO, Lumio Systems",
     metric: "63%",
   },
@@ -90,7 +90,7 @@ const testimonials = [
     client: "VERTEX HEALTH",
     quote:
       "Landing pages, paid campaigns, lifecycle — everything connected. We saw **3.4× growth in qualified leads** without expanding internal headcount.",
-    author: "Marcus Lin",
+    author: "Rahul Nair",
     role: "Head of Growth, Vertex Health",
     metric: "3.4×",
   },
@@ -439,26 +439,30 @@ Every Propel engagement is measured by what it improves: qualified leads, lower 
             ))}
           </div>
 
-          {/* Stat strip */}
-          <div className="mt-10 grid grid-cols-2 gap-4 border-t border-background/15 pt-10 md:mt-16 md:grid-cols-4 md:gap-6 md:pt-16">
-            {[
-              { v: "98%", l: "Client retention" },
-              { v: "47", l: "Active partners" },
-              { v: "5★", l: "Avg. rating" },
-              { v: "12+", l: "Industries served" },
-            ].map((s) => (
-              <div key={s.l} className="group">
-                <div className="text-display text-4xl text-[var(--lime)] transition-colors duration-300 group-hover:text-[var(--orange)] md:text-6xl">
-                  {s.v}
-                </div>
-                <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-background/60 md:text-xs">
-                  {s.l}
-                </p>
-              </div>
-            ))}
-          </div>
+          {/* Stat strip (hidden for now - will enable later when we have real data/partners) */}
+{/*
+  <div className="mt-10 grid grid-cols-2 gap-4 border-t border-background/15 pt-10 md:mt-16 md:grid-cols-4 md:gap-6 md:pt-16">
+    {[
+      { v: "98%", l: "Client retention" },
+      { v: "47", l: "Active partners" },
+      { v: "5★", l: "Avg. rating" },
+      { v: "12+", l: "Industries served" },
+    ].map((s) => (
+      <div key={s.l} className="group">
+        <div className="text-display text-4xl text-[var(--lime)] transition-colors duration-300 group-hover:text-[var(--orange)] md:text-6xl">
+          {s.v}
+        </div>
+        <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-background/60 md:text-xs">
+          {s.l}
+        </p>
+      </div>
+    ))}
+  </div>
+*/}
         </div>
       </section>
+
+      
 
       {/* CTA */}
       <section id="contact" className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
