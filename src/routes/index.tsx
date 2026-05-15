@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PropelLogo } from "@/components/PropelLogo";
+import { ContactSection } from "@/components/ContactSection";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -464,21 +465,8 @@ Every Propel engagement is measured by what it improves: qualified leads, lower 
 
       
 
-      {/* CTA */}
-      <section id="contact" className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
-        <div className="grid gap-10 md:grid-cols-12 md:items-end">
-          <h2 className="text-display md:col-span-8 text-5xl md:text-[7.5rem]">
-            For case studies specific to your niche — <span className="text-[var(--orange)]">reach out.</span>
-          </h2>
-          <div className="md:col-span-4 flex flex-col items-start gap-6">
-            <a href="mailto:hello@propel.studio" className="group inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-5 text-base font-medium text-background transition hover:bg-[var(--orange)]">
-              Get in touch
-              <span className="transition group-hover:translate-x-1">↗</span>
-            </a>
-            <p className="text-sm text-muted-foreground">hello@propel.studio<br/>+1 (415) 555-0142</p>
-          </div>
-        </div>
-      </section>
+      {/* Contact */}
+      <ContactSection />
 
       {/* Footer */}
       <footer className="border-t border-border bg-foreground text-background">
