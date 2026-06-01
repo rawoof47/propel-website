@@ -12,7 +12,7 @@ export function PropelLogo({
       {/* Logo */}
       <div className="inline-flex items-start gap-1 font-display font-bold">
         <span className="text-[1.4em] leading-none tracking-tight">
-          Propel
+          Propel Strategies
         </span>
 
         <svg
