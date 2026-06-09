@@ -73,30 +73,6 @@ const testimonials = [
     role: "Founder, Percyboarding",
     metric: "2 Systems",
   },
-  {
-    client: "NOVA RETAIL",
-    quote:
-      "Within one quarter the redesigned site and local SEO push delivered a **184% lift in qualified inquiries**. The Propel team operates with real strategic intent.",
-    author: "Aarav Mehta",
-    role: "Marketing Director, Nova Retail",
-    metric: "+184%",
-  },
-  {
-    client: "LUMIO SYSTEMS",
-    quote:
-      "The automation dashboard cut **63% of our manual operations** in the first month. What used to take a full team day now runs in the background — accurately.",
-    author: "Priya Sharma",
-    role: "COO, Lumio Systems",
-    metric: "63%",
-  },
-  {
-    client: "VERTEX HEALTH",
-    quote:
-      "Landing pages, paid campaigns, lifecycle — everything connected. We saw **3.4× growth in qualified leads** without expanding internal headcount.",
-    author: "Rahul Nair",
-    role: "Head of Growth, Vertex Health",
-    metric: "3.4×",
-  },
 ];
 
 const process = [
@@ -113,24 +89,6 @@ const cases = [
     result: "2 Systems",
     label: "Website + boarding management platform",
     sub: "Custom software for customer, pet, booking, and payment management",
-  },
-  {
-    client: "NOVA RETAIL",
-    result: "+184%",
-    label: "Qualified inquiries lift",
-    sub: "Redesign + local SEO push",
-  },
-  {
-    client: "LUMIO SYSTEMS",
-    result: "63%",
-    label: "Manual operations reduction",
-    sub: "Automation dashboard",
-  },
-  {
-    client: "VERTEX HEALTH",
-    result: "3.4×",
-    label: "Qualified lead growth",
-    sub: "Connected campaigns + lifecycle",
   },
 ];
 
@@ -154,7 +112,6 @@ const footerServiceGroups = [
     items: [
       { label: "Web Applications", href: "#services", Icon: Code2 },
       { label: "Mobile App Development", href: "#services", Icon: Smartphone },
-      { label: "Business Automation Systems", href: "#services", Icon: Workflow },
     ],
   },
   {
@@ -166,9 +123,13 @@ const footerServiceGroups = [
   },
   {
     title: "Support",
-    items: [{ label: "Maintenance & Support", href: "#contact", Icon: LifeBuoy }],
+    items: [
+      { label: "Business Automation Systems", href: "#services", Icon: Workflow },
+      { label: "Maintenance & Support", href: "#services", Icon: LifeBuoy },
+    ],
   },
 ];
+
 
 function useScrollReveal() {
   useEffect(() => {
@@ -512,110 +473,63 @@ Every Propel engagement is measured by what it improves: qualified leads, lower 
       {/* Footer */}
 <footer className="border-t border-border bg-foreground text-background">
   <div className="mx-auto max-w-[1400px] px-6 py-16 md:px-10">
-
     <div className="grid gap-12 md:grid-cols-12">
 
       {/* Brand Section */}
-      <div className="md:col-span-5">
+      <div className="md:col-span-4">
         <PropelLogo className="h-8" color="var(--lime)" />
-
         <p className="mt-6 max-w-sm text-background/70 leading-relaxed">
           We help businesses grow faster by creating digital systems that combine design, technology, and marketing into a single scalable growth engine.
         </p>
       </div>
 
-      {/* Links */}
-      <div className="md:col-span-4 grid grid-cols-2 gap-10 text-sm">
-
-        {/* Company */}
-        <div>
-          <p className="text-xs uppercase tracking-widest text-background/50">
-            Company
-          </p>
-          <ul className="mt-4 space-y-2.5">
-            {companyLinks.map(({ label, href, Icon }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  className="link-underline group text-background/70 hover:text-[var(--lime)]"
-                >
-                  <Icon className="size-3.5 shrink-0 opacity-70 transition group-hover:opacity-100 group-hover:text-[var(--orange)]" />
-                  <span>{label}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Services */}
-        <div>
-          <p className="text-xs uppercase tracking-widest text-background/50">
-            Services
-          </p>
-
-          <div className="mt-4 space-y-6">
-            {footerServiceGroups.map((group) => (
-              <div key={group.title}>
-                <p className="text-[11px] uppercase tracking-wider text-background/40 mb-2">
-                  {group.title}
-                </p>
-                <ul className="space-y-1.5">
-                  {group.items.map(({ label, href, Icon }) => (
-                    <li key={label}>
-                      <a
-                        href={href}
-                        className="link-underline group text-background/70 hover:text-[var(--lime)]"
-                      >
-                        <Icon className="size-3.5 shrink-0 opacity-70 transition group-hover:opacity-100 group-hover:text-[var(--orange)]" />
-                        <span>{label}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Company */}
+      <div className="md:col-span-2 text-sm">
+        <p className="text-xs uppercase tracking-widest text-background/50">Company</p>
+        <ul className="mt-4 space-y-2.5">
+          {companyLinks.map(({ label, href, Icon }) => (
+            <li key={label}>
+              <a href={href} className="link-underline group inline-flex items-center gap-2 text-background/70 hover:text-[var(--lime)]">
+                <Icon className="size-3.5 shrink-0 opacity-70 transition group-hover:opacity-100 group-hover:text-[var(--orange)]" />
+                <span>{label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      {/* Trust Card */}
-      <div className="md:col-span-3">
-        <a
-          href="#contact"
-          className="block rounded-xl border border-background/20 p-6 bg-background/5 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--lime)]/40 hover:bg-background/10 hover:shadow-xl"
-        >
-          <div className="flex items-center justify-between">
-            <div className="text-xs uppercase tracking-widest text-background/60">
-              Recognition
+      {/* Services — now fills the right side, split into 2 columns */}
+      <div className="md:col-span-6 text-sm">
+        <p className="text-xs uppercase tracking-widest text-background/50">Services</p>
+
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+          {footerServiceGroups.map((group) => (
+            <div key={group.title}>
+              <p className="text-[11px] uppercase tracking-wider text-background/40 mb-2">
+                {group.title}
+              </p>
+              <ul className="space-y-1.5">
+                {group.items.map(({ label, href, Icon }) => (
+                  <li key={label}>
+                    <a href={href} className="link-underline group inline-flex items-center gap-2 text-background/70 hover:text-[var(--lime)]">
+                      <Icon className="size-3.5 shrink-0 opacity-70 transition group-hover:opacity-100 group-hover:text-[var(--orange)]" />
+                      <span>{label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ArrowUpRight className="size-4 text-background/50 transition group-hover:text-[var(--lime)]" />
-          </div>
-
-          <div className="mt-3 text-xl font-semibold text-[var(--lime)]">
-            Trusted Growth Partner
-          </div>
-
-          <p className="mt-2 text-sm text-background/70 leading-relaxed">
-            Helping startups and businesses transform digital presence into scalable growth systems.
-          </p>
-        </a>
+          ))}
+        </div>
       </div>
 
     </div>
 
     {/* Bottom Bar */}
     <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-background/15 pt-8 text-sm text-background/60">
-
-      <p>
-        © {new Date().getFullYear()} Propel. All rights reserved.
-      </p>
-
-      <p className="text-background/50">
-        Built for growth. Designed for impact.
-      </p>
-
+      <p>© {new Date().getFullYear()} Propel. All rights reserved.</p>
+      <p className="text-background/50">Built for growth. Designed for impact.</p>
     </div>
-
   </div>
 </footer>
     </div>
