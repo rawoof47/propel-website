@@ -42,9 +42,9 @@ function computeLeadPriority(count: number): "low" | "medium" | "high" {
 const CONTACT_METHODS = ["WhatsApp", "Phone Call", "Email"] as const;
 type ContactMethod = (typeof CONTACT_METHODS)[number];
 
-const WHATSAPP_NUMBER = "+91 906385619";
+const WHATSAPP_NUMBER = "+91 9063856159";
 const EMAIL = "contact@propelstrategies.net";
-const PHONE_DISPLAY = "+91 906385619";
+const PHONE_DISPLAY = "+91 9063856159";
 
 type Errors = Partial<Record<"firstName" | "email" | "phone" | "services", string>>;
 type TouchedFields = "firstName" | "email" | "phone" | "services" | "__submit";

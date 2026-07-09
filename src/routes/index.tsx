@@ -9,7 +9,7 @@ export const Route = createFileRoute("/")({
 });
 
 /* Contact constants — keep in sync with ContactSection */
-const WHATSAPP_NUMBER = "+91 906385619";
+const WHATSAPP_NUMBER = "+91 9063856159";
 const CONTACT_EMAIL = "contact@propelstrategies.net";
 
 const pillars = [
