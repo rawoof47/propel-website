@@ -444,7 +444,7 @@ export function ContactSection() {
 
                   <div className="mt-3 flex gap-2">
                     <SocialPill
-                      href="https://www.instagram.com/propelstrategies?igsh=MXIxdjVkM3RvODM5cg%3D%3D"
+                      href="https://www.instagram.com/propelstrategies"
                       label="Instagram"
                     />
 

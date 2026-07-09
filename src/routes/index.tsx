@@ -121,7 +121,7 @@ const socialLinks = [
   },
   {
     label: "Instagram",
-    href: "https://www.instagram.com/propelstrategies?igsh=MXIxdjVkM3RvODM5cg%3D%3D",
+    href: "https://www.instagram.com/propelstrategies",
     Icon: Instagram,
   },
   {
