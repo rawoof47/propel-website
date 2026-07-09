@@ -1,12 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { Info, Briefcase, Mail, Globe, Search, Code2, Smartphone, Workflow, Megaphone, Target, LifeBuoy, ArrowUpRight } from "lucide-react";
+import { Info, Briefcase, Mail, Globe, Search, Code2, Smartphone, Workflow, Megaphone, Target, LifeBuoy, ArrowUpRight, Instagram, Linkedin, MessageCircle, Phone } from "lucide-react";
 import { PropelLogo } from "@/components/PropelLogo";
 import { ContactSection } from "@/components/ContactSection";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
+
+/* Contact constants — keep in sync with ContactSection */
+const WHATSAPP_NUMBER = "+91 906385619";
+const CONTACT_EMAIL = "contact@propelstrategies.net";
 
 const pillars = [
   {
@@ -97,6 +101,34 @@ const companyLinks = [
   { label: "About", href: "#about", Icon: Info },
   { label: "Case Studies", href: "#work", Icon: Briefcase },
   { label: "Contact", href: "#contact", Icon: Mail },
+];
+
+const socialLinks = [
+  {
+    label: "WhatsApp",
+    href: `https://wa.me/${WHATSAPP_NUMBER.replace(/[^0-9]/g, "")}`,
+    Icon: MessageCircle,
+  },
+  {
+    label: "Call now",
+    href: `tel:+${WHATSAPP_NUMBER.replace(/[^0-9]/g, "")}`,
+    Icon: Phone,
+  },
+  {
+    label: "Email",
+    href: `mailto:${CONTACT_EMAIL}`,
+    Icon: Mail,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/propelstrategies?igsh=MXIxdjVkM3RvODM5cg%3D%3D",
+    Icon: Instagram,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/propel-strategies/posts/?feedView=all",
+    Icon: Linkedin,
+  },
 ];
 
 const footerServiceGroups = [
@@ -481,6 +513,26 @@ Every Propel engagement is measured by what it improves: qualified leads, lower 
         <p className="mt-6 max-w-sm text-background/70 leading-relaxed">
           We help businesses grow faster by creating digital systems that combine design, technology, and marketing into a single scalable growth engine.
         </p>
+
+        {/* Contact + social links */}
+        <div className="mt-6 flex flex-wrap gap-2">
+          {socialLinks.map(({ label, href, Icon }) => {
+            const isExternal = href.startsWith("http");
+            return (
+              <a
+                key={label}
+                href={href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+                aria-label={label}
+                className="group inline-flex items-center gap-2 rounded-full border border-background/15 bg-background/5 px-4 py-2 text-xs font-medium text-background/80 transition-all duration-300 hover:border-[var(--lime)] hover:bg-background/10 hover:text-[var(--lime)]"
+              >
+                <Icon className="size-3.5 shrink-0 opacity-70 transition group-hover:opacity-100" />
+                <span>{label}</span>
+              </a>
+            );
+          })}
+        </div>
       </div>
 
       {/* Company */}

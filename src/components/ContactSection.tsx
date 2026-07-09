@@ -42,9 +42,9 @@ function computeLeadPriority(count: number): "low" | "medium" | "high" {
 const CONTACT_METHODS = ["WhatsApp", "Phone Call", "Email"] as const;
 type ContactMethod = (typeof CONTACT_METHODS)[number];
 
-const WHATSAPP_NUMBER = "+91 63038 85050";
+const WHATSAPP_NUMBER = "+91 906385619";
 const EMAIL = "contact@propelstrategies.net";
-const PHONE_DISPLAY = "+91 63038 85050";
+const PHONE_DISPLAY = "+91 906385619";
 
 type Errors = Partial<Record<"firstName" | "email" | "phone" | "services", string>>;
 type TouchedFields = "firstName" | "email" | "phone" | "services" | "__submit";
@@ -113,15 +113,15 @@ export function ContactSection() {
 
     try {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-// 🔍 DEBUG LOGS (TEMP - REMOVE LATER IF YOU WANT)
-console.log("🔥 EMAILJS DEBUG START");
-console.log("SERVICE ID:", serviceId);
-console.log("TEMPLATE ID:", templateId);
-console.log("PUBLIC KEY:", publicKey);
-console.log("🔥 EMAILJS DEBUG END");
+      // 🔍 DEBUG LOGS (TEMP - REMOVE LATER IF YOU WANT)
+      console.log("🔥 EMAILJS DEBUG START");
+      console.log("SERVICE ID:", serviceId);
+      console.log("TEMPLATE ID:", templateId);
+      console.log("PUBLIC KEY:", publicKey);
+      console.log("🔥 EMAILJS DEBUG END");
 
       if (!serviceId || !templateId || !publicKey) {
         throw new Error("EmailJS configuration is missing. Please check environment variables.");
@@ -129,7 +129,7 @@ console.log("🔥 EMAILJS DEBUG END");
 
       console.log("📤 Sending EmailJS request with params:", templateParams);
 
-await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
       setSubmitted(true);
     } catch (error) {
@@ -405,10 +405,13 @@ await emailjs.send(serviceId, templateId, templateParams, publicKey);
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-background/60">
                   Need to talk now?
                 </p>
+
                 <h3 className="text-display mt-3 text-3xl md:text-4xl">
                   Skip the form.
                   <br />
-                  <span className="italic font-medium text-[var(--lime)]">Reach us directly.</span>
+                  <span className="italic font-medium text-[var(--lime)]">
+                    Reach us directly.
+                  </span>
                 </h3>
 
                 <div className="mt-6 space-y-2">
@@ -418,12 +421,14 @@ await emailjs.send(serviceId, templateId, templateParams, publicKey);
                     sub="Fastest reply"
                     icon="whatsapp"
                   />
+
                   <QuickAction
                     href={`tel:+${WHATSAPP_NUMBER.replace(/[^0-9]/g, "")}`}
                     label="Call now"
                     sub={PHONE_DISPLAY}
                     icon="call"
                   />
+
                   <QuickAction
                     href={`mailto:${EMAIL}`}
                     label="Email"
@@ -436,9 +441,17 @@ await emailjs.send(serviceId, templateId, templateParams, publicKey);
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-background/60">
                     Follow
                   </p>
+
                   <div className="mt-3 flex gap-2">
-                    <SocialPill href="https://instagram.com" label="Instagram" />
-                    <SocialPill href="https://linkedin.com" label="LinkedIn" />
+                    <SocialPill
+                      href="https://www.instagram.com/propelstrategies?igsh=MXIxdjVkM3RvODM5cg%3D%3D"
+                      label="Instagram"
+                    />
+
+                    <SocialPill
+                      href="https://www.linkedin.com/company/propel-strategies/posts/?feedView=all"
+                      label="LinkedIn"
+                    />
                   </div>
                 </div>
               </div>
@@ -449,8 +462,12 @@ await emailjs.send(serviceId, templateId, templateParams, publicKey);
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--lime)] opacity-75" />
                     <span className="relative inline-flex size-2.5 rounded-full bg-[var(--lime)]" />
                   </span>
-                  <p className="text-sm font-medium">Currently accepting Q2 projects</p>
+
+                  <p className="text-sm font-medium">
+                    Currently accepting Q2 projects
+                  </p>
                 </div>
+
                 <p className="mt-2 text-xs text-muted-foreground">
                   Avg. response time under 4 hours during business days.
                 </p>
@@ -561,13 +578,18 @@ function QuickAction({
   );
 }
 
-function SocialPill({ href, label }: { href: string; label: string }) {
+type SocialPillProps = {
+  href: string;
+  label: string;
+};
+
+function SocialPill({ href, label }: SocialPillProps) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="rounded-full border border-background/20 px-4 py-2 text-xs font-medium text-background/80 transition hover:border-[var(--lime)] hover:text-[var(--lime)]"
+      className="inline-flex items-center rounded-full border border-background/15 bg-background/5 px-4 py-2 text-xs font-medium text-background/80 transition-all duration-300 hover:border-primary hover:bg-primary/10 hover:text-primary"
     >
       {label}
     </a>
@@ -625,7 +647,6 @@ function SuccessState({ onReset }: { onReset: () => void }) {
           Continue on WhatsApp
           <span className="transition group-hover:translate-x-1">↗</span>
         </a>
-        
       </div>
     </div>
   );
